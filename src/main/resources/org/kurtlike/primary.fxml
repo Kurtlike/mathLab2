@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<fx:root fx:id="leTableauPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Pane fx:id="leTableauGrapheDeFonction" layoutX="14.0" layoutY="36.0" prefHeight="550.0" prefWidth="550.0" style="-fx-background-color: #FFFFAA;" />
+      <Pane fx:id="leTableauChoix" layoutX="586.0" layoutY="36.0" prefHeight="550.0" prefWidth="200.0" style="-fx-background-color: #ffffaa;">
+         <children>
+            <ChoiceBox fx:id="methodeSelection" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="158.0" />
+            <ChoiceBox fx:id="lequationChoix" layoutX="14.0" layoutY="50.0" prefHeight="25.0" prefWidth="158.0" />
+            <TextField fx:id="gaucheBordure" layoutX="15.0" layoutY="88.0" prefHeight="25.0" prefWidth="71.0" />
+            <TextField fx:id="droiteBordure" layoutX="100.0" layoutY="88.0" prefHeight="25.0" prefWidth="71.0" />
+            <TextField fx:id="erreur" layoutX="13.0" layoutY="125.0" prefHeight="25.0" prefWidth="158.0" />
+            <Button fx:id="resoudreBouton" layoutX="13.0" layoutY="162.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="решить" />
+            <TextArea fx:id="console" layoutX="15.0" layoutY="194.0" prefHeight="335.0" prefWidth="158.0" />
+         </children>
+      </Pane>
+      <MenuBar fx:id="leMenu" layoutY="2.0" prefHeight="25.0" prefWidth="800.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</fx:root>
