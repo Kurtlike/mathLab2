@@ -12,7 +12,6 @@ public class MyChoiceBox<Key, Value> extends MyAbstractChoiceBox<Key, Value> imp
     public MyChoiceBox(javafx.scene.control.ChoiceBox<Value> choiceBox) {
         super(choiceBox);
     }
-
     @Override
     public Key getSelectedKey() {
         for (Key key: hashMap.keySet()){

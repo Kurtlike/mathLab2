@@ -69,6 +69,11 @@ public class PrimaryController {
         myLineChart.insertChart(leTableauGrapheDeFonction);
         myLineChart.addCss("css/chart.css");
 
+        lequationChoix.setOnAction(event -> {
+            manageable.setChosenFunction(functions.getSelectedKey());
+            myLineChart.addFunc(manageable.getFuncDots(),manageable.getFuncName());
+        });
+
         resoudreBouton.setOnAction(event -> {
 
             manageable.setChosenMethod(methods.getSelectedKey());

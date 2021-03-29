@@ -40,8 +40,6 @@ public class Test implements Manageable<String,String> {
 
     @Override
     public void setChosenFunction(String s) {
-        System.out.println(funk.entrySet());
-        System.out.println(s);
         System.out.println(funk.get(s));
     }
 
