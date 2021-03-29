@@ -1,5 +1,6 @@
 package org.kurtlike.elements.choiceboxes;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.kurtlike.elements.abctract.MyAbstractChoiceBox;
 import org.kurtlike.elements.interfaces.Visible;
@@ -25,19 +26,19 @@ public class MyChoiceBox<Key, Value> extends MyAbstractChoiceBox<Key, Value> imp
     @Override
     public void addField(Key key, Value value) {
         super.hashMap.put(key, value);
-        super.choiceBox.setItems((ObservableList<Value>) hashMap.values());
+        super.choiceBox.setItems(FXCollections.observableArrayList(hashMap.values()));
     }
 
     @Override
     public void addAll(HashMap<Key, Value> hashMap) {
         super.hashMap.putAll(hashMap);
-        super.choiceBox.setItems((ObservableList<Value>) hashMap.values());
+        super.choiceBox.setItems(FXCollections.observableArrayList(hashMap.values()));
     }
 
     @Override
     public void deleteFieldByKey(Key key) {
         super.hashMap.remove(key);
-        super.choiceBox.setItems((ObservableList<Value>) hashMap.values());
+        super.choiceBox.setItems(FXCollections.observableArrayList(hashMap.values()));
     }
 
     @Override
@@ -48,13 +49,13 @@ public class MyChoiceBox<Key, Value> extends MyAbstractChoiceBox<Key, Value> imp
                 break;
             }
         }
-        super.choiceBox.setItems((ObservableList<Value>) hashMap.values());
+        super.choiceBox.setItems(FXCollections.observableArrayList(hashMap.values()));
     }
 
     @Override
     public void deleteAll() {
         super.hashMap.clear();
-        super.choiceBox.setItems((ObservableList<Value>) hashMap.values());
+        super.choiceBox.setItems(FXCollections.observableArrayList(hashMap.values()));
     }
 
     @Override

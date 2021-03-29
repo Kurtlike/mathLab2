@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.kurtlike.elements.Console;
+import org.kurtlike.elements.Test;
 import org.kurtlike.elements.charts.MyLineChart;
 import org.kurtlike.elements.choiceboxes.MyChoiceBox;
 import org.kurtlike.elements.interfaces.Manageable;
@@ -55,7 +56,7 @@ public class PrimaryController {
 
     @FXML
     public void initialize() {
-        Manageable<String,String> manageable = (Manageable) new Object();
+        Manageable<String,String> manageable = new  Test();
         MyChoiceBox<String,String> functions = new MyChoiceBox<>(lequationChoix);
         MyChoiceBox<String,String> methods = new MyChoiceBox<>(methodeSelection);
 
