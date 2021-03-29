@@ -15,12 +15,12 @@ public class MyChoiceBox<Key, Value> extends MyAbstractChoiceBox<Key, Value> imp
 
     @Override
     public Key getSelectedKey() {
-        return super.selectedKey;
-    }
-
-    @Override
-    protected void setSelectedKey(Key key) {
-        super.selectedKey = key;
+        for (Key key: hashMap.keySet()){
+            if(choiceBox.getValue().equals(hashMap.get(key) )){
+                return key;
+            }
+        }
+         return null;
     }
 
     @Override

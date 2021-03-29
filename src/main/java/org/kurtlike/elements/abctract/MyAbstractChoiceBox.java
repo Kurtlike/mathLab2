@@ -14,7 +14,6 @@ public abstract class MyAbstractChoiceBox<Key,Value> {
         hashMap = new HashMap<>();
     }
     public abstract Key getSelectedKey();
-    protected abstract void setSelectedKey(Key key);
     public abstract void addField(Key key, Value value);
     public abstract void addAll(HashMap<Key,Value> hashMap);
     public abstract void deleteFieldByKey(Key key);

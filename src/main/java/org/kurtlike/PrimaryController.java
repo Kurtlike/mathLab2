@@ -70,6 +70,7 @@ public class PrimaryController {
         myLineChart.addCss("css/chart.css");
 
         resoudreBouton.setOnAction(event -> {
+
             manageable.setChosenMethod(methods.getSelectedKey());
             manageable.setChosenFunction(functions.getSelectedKey());
 
