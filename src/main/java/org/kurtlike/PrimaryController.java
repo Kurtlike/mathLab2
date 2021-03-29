@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.kurtlike.elements.Console;
-import org.kurtlike.elements.Test;
 import org.kurtlike.elements.charts.MyLineChart;
 import org.kurtlike.elements.choiceboxes.MyChoiceBox;
 import org.kurtlike.elements.interfaces.Manageable;
@@ -18,6 +17,8 @@ import org.kurtlike.elements.textfields.IntervalBoundary;
  */
 
 public class PrimaryController {
+    @FXML
+    private Button clearButton;
     @FXML
     private AnchorPane leTableauPrincipal;
 
@@ -62,6 +63,11 @@ public class PrimaryController {
 
         functions.addAll(manageable.getFunctions());
         methods.addAll(manageable.getMethods());
+        MyLineChart myLineChart = new MyLineChart();
+
+
+        myLineChart.insertChart(leTableauGrapheDeFonction);
+        myLineChart.addCss("css/chart.css");
 
         resoudreBouton.setOnAction(event -> {
             manageable.setChosenMethod(methods.getSelectedKey());
@@ -74,11 +80,7 @@ public class PrimaryController {
             manageable.setBorders(left.getBorder(),right.getBorder());
             manageable.setAccuracy(acc.getAccuracy());
 
-            MyLineChart myLineChart = new MyLineChart();
             myLineChart.addFunc(manageable.getFuncDots(),manageable.getFuncName());
-            myLineChart.insertChart(leTableauGrapheDeFonction);
-            myLineChart.addCss("css/chart.css");
-
             iterButton.setOnAction(event1 -> {
                 if(!manageable.isEnd()) {
                     Number[] dot = manageable.getNextApproximationDot();
@@ -91,6 +93,9 @@ public class PrimaryController {
                 }
             });
 
+        });
+        clearButton.setOnAction(event -> {
+            myLineChart.clearChart();
         });
     }
 

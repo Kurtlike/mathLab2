@@ -1,4 +1,4 @@
-package org.kurtlike.elements;
+package org.kurtlike;
 
 import org.kurtlike.elements.interfaces.Manageable;
 
@@ -40,6 +40,7 @@ public class Test implements Manageable<String,String> {
 
     @Override
     public void setChosenFunction(String s) {
+        System.out.println(funk.entrySet());
         System.out.println(funk.get(s));
     }
 
@@ -50,6 +51,10 @@ public class Test implements Manageable<String,String> {
 
     @Override
     public Number[][] getFuncDots() {
+        for (Double []d:dots){
+            d[0] += 0.3;
+            d[1] += 0.3;
+        }
         return dots;
     }
 
