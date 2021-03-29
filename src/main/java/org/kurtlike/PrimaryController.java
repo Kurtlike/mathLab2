@@ -55,7 +55,7 @@ public class PrimaryController {
 
     @FXML
     public void initialize() {
-        Manageable<String,String> manageable = (Manageable) new Object();
+        /*Manageable<String,String> manageable = (Manageable) new Object();
         MyChoiceBox<String,String> functions = new MyChoiceBox<>(lequationChoix);
         MyChoiceBox<String,String> methods = new MyChoiceBox<>(methodeSelection);
 
@@ -90,7 +90,10 @@ public class PrimaryController {
                 }
             });
 
-        });
+        });*/
+        MyLineChart myLineChart = new MyLineChart();
+        myLineChart.insertChart(leTableauGrapheDeFonction);
+        myLineChart.addCss("css/chart.css");
     }
 
 }
