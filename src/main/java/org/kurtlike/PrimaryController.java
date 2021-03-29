@@ -5,7 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import org.kurtlike.elements.Console;
 import org.kurtlike.elements.charts.MyLineChart;
+import org.kurtlike.elements.choiceboxes.MyChoiceBox;
+import org.kurtlike.elements.interfaces.Manageable;
+import org.kurtlike.elements.textfields.AccuracyField;
+import org.kurtlike.elements.textfields.IntervalBoundary;
 
 /**
  * @author kurtlike
@@ -22,10 +27,13 @@ public class PrimaryController {
     private Pane leTableauChoix;
 
     @FXML
-    private ChoiceBox<?> methodeSelection;
+    private Button iterButton;
 
     @FXML
-    private ChoiceBox<?> lequationChoix;
+    private ChoiceBox<String> methodeSelection;
+
+    @FXML
+    private ChoiceBox<String> lequationChoix;
 
     @FXML
     private TextField gaucheBordure;
@@ -34,24 +42,55 @@ public class PrimaryController {
     private TextField droiteBordure;
 
     @FXML
-    private final TextField erreur = new TextField();
+    private TextField erreur = new TextField();
 
     @FXML
-    private Button resoudreBouton;
+    private Button resoudreBouton = new Button();
 
     @FXML
-    private final TextArea console = new TextArea();
+    private TextArea console = new TextArea();
 
     @FXML
     private MenuBar leMenu;
 
     @FXML
     public void initialize() {
-        Double [][]arr = {{1.2,2.0},{1.3,2.2},{2.3,2.9}};
-        MyLineChart<Double> myLineChart = new MyLineChart<>();
-        myLineChart.addFunc(arr,"haha");
-        myLineChart.insertChart(leTableauGrapheDeFonction);
-        console.appendText("sadasd");
-        erreur.setText("Asfdsa");
+        Manageable<String,String> manageable = (Manageable) new Object();
+        MyChoiceBox<String,String> functions = new MyChoiceBox<>(lequationChoix);
+        MyChoiceBox<String,String> methods = new MyChoiceBox<>(methodeSelection);
+
+        functions.addAll(manageable.getFunctions());
+        methods.addAll(manageable.getMethods());
+
+        resoudreBouton.setOnAction(event -> {
+            manageable.setChosenMethod(methods.getSelectedKey());
+            manageable.setChosenFunction(functions.getSelectedKey());
+
+            IntervalBoundary left = new IntervalBoundary(gaucheBordure);
+            IntervalBoundary right = new IntervalBoundary(droiteBordure);
+            AccuracyField acc = new AccuracyField(erreur);
+
+            manageable.setBorders(left.getBorder(),right.getBorder());
+            manageable.setAccuracy(acc.getAccuracy());
+
+            MyLineChart myLineChart = new MyLineChart();
+            myLineChart.addFunc(manageable.getFuncDots(),manageable.getFuncName());
+            myLineChart.insertChart(leTableauGrapheDeFonction);
+            myLineChart.addCss("css/chart.css");
+
+            iterButton.setOnAction(event1 -> {
+                if(!manageable.isEnd()) {
+                    Number[] dot = manageable.getNextApproximationDot();
+                    String dotName = manageable.getApproximationDotsName();
+                    myLineChart.addDot(dot[0], dot[1], dotName);
+                }
+                else {
+                    Console.writeAnswer(console,manageable.getAnswer());
+                    Console.writeLine(console,manageable.getAnswersNote());
+                }
+            });
+
+        });
     }
+
 }
