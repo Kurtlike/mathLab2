@@ -18,7 +18,17 @@ import org.kurtlike.elements.textfields.IntervalBoundary;
 
 public class PrimaryController {
     @FXML
+    private Label bordersName;
+
+    @FXML
+    private Label leftBorderName;
+
+    @FXML
+    private Label rightBorderName;
+
+    @FXML
     private Button clearButton;
+
     @FXML
     private AnchorPane leTableauPrincipal;
 
@@ -57,9 +67,9 @@ public class PrimaryController {
 
     @FXML
     public void initialize() {
-        Manageable<String,String> manageable = new  Test();
-        MyChoiceBox<String,String> functions = new MyChoiceBox<>(lequationChoix);
-        MyChoiceBox<String,String> methods = new MyChoiceBox<>(methodeSelection);
+        Manageable<String, String> manageable = new SolutionContainer();
+        MyChoiceBox<String, String> functions = new MyChoiceBox<>(lequationChoix);
+        MyChoiceBox<String, String> methods = new MyChoiceBox<>(methodeSelection);
 
         functions.addAll(manageable.getFunctions());
         methods.addAll(manageable.getMethods());
@@ -69,26 +79,37 @@ public class PrimaryController {
         myLineChart.insertChart(leTableauGrapheDeFonction);
         myLineChart.addCss("css/chart.css");
 
+
+        IntervalBoundary left = new IntervalBoundary(gaucheBordure);
+        IntervalBoundary right = new IntervalBoundary(droiteBordure);
+        AccuracyField acc = new AccuracyField(erreur);
+
         lequationChoix.setOnAction(event -> {
             manageable.setChosenFunction(functions.getSelectedKey());
-            myLineChart.addFunc(manageable.getFuncDots(),manageable.getFuncName());
+            myLineChart.addFunc(manageable.getFuncDots(), manageable.getFuncName());
         });
-
+        methodeSelection.setOnAction(event -> {
+            if (manageable.isFiledSingle()) {
+                right.setVisible(false);
+                leftBorderName.setVisible(false);
+                rightBorderName.setVisible(false);
+                bordersName.setText("Приближение");
+            } else {
+                right.setVisible(true);
+                leftBorderName.setVisible(true);
+                rightBorderName.setVisible(true);
+                bordersName.setText("Ограничение");
+            }
+        });
         resoudreBouton.setOnAction(event -> {
-
+            myLineChart.clearChart();
             manageable.setChosenMethod(methods.getSelectedKey());
             manageable.setChosenFunction(functions.getSelectedKey());
-
-            IntervalBoundary left = new IntervalBoundary(gaucheBordure);
-            IntervalBoundary right = new IntervalBoundary(droiteBordure);
-            AccuracyField acc = new AccuracyField(erreur);
-
-            manageable.setBorders(left.getBorder(),right.getBorder());
+            manageable.setBorders(left.getBorder(), right.getBorder());
             manageable.setAccuracy(acc.getAccuracy());
-
-            myLineChart.addFunc(manageable.getFuncDots(),manageable.getFuncName());
+            myLineChart.addFunc(manageable.getFuncDots(), manageable.getFuncName());
             iterButton.setOnAction(event1 -> {
-                if(!manageable.isEnd()) {
+                if (!manageable.isEnd()) {
                     Number[] dot = manageable.getNextApproximationDot();
                     String dotName = manageable.getApproximationDotsName();
                     myLineChart.addDot(dot[0], dot[1], dotName);

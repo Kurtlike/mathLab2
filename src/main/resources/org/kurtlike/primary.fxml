@@ -37,21 +37,24 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="107.0" prefHeight="25.0" prefWidth="158.0" text="Ограничение">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
+            <Label fx:id="bordersName" layoutX="19.0" layoutY="107.0" prefHeight="25.0" prefWidth="158.0"
+                   text="Ограничение">
+                <font>
+                    <Font name="Arial" size="12.0"/>
+                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="132.0" prefHeight="25.0" prefWidth="47.0" text="Слева">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="100.0" layoutY="132.0" prefHeight="25.0" prefWidth="71.0" text="Справа">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-            </Label>
+             <Label fx:id="leftBorderName" layoutX="19.0" layoutY="132.0" prefHeight="25.0" prefWidth="47.0"
+                    text="Слева">
+                 <font>
+                     <Font name="Arial" size="12.0"/>
+                 </font>
+             </Label>
+             <Label fx:id="rightBorderName" layoutX="100.0" layoutY="132.0" prefHeight="25.0" prefWidth="71.0"
+                    text="Справа">
+                 <font>
+                     <Font name="Arial" size="12.0"/>
+                 </font>
+             </Label>
             <Label layoutX="19.0" layoutY="182.0" prefHeight="25.0" prefWidth="53.0" text="Точность">
                <font>
                   <Font name="Arial" size="12.0" />

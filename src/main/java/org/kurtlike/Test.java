@@ -89,4 +89,9 @@ public class Test implements Manageable<String,String> {
         count--;
         return count < 0;
     }
+
+    @Override
+    public boolean isFiledSingle() {
+        return true;
+    }
 }

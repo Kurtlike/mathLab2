@@ -16,4 +16,6 @@ public interface Manageable<Key,Value> {
     public Number getAnswer();
     public String getAnswersNote();
     public boolean isEnd();
+
+    public boolean isFiledSingle();
 }
