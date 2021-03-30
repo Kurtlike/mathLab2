@@ -89,6 +89,7 @@ public class PrimaryController {
             myLineChart.addFunc(manageable.getFuncDots(), manageable.getFuncName());
         });
         methodeSelection.setOnAction(event -> {
+            manageable.setChosenMethod(methods.getSelectedKey());
             if (manageable.isFiledSingle()) {
                 right.setVisible(false);
                 leftBorderName.setVisible(false);
